@@ -27,9 +27,12 @@ function windowResized() {
 function draw() {
   background(0);
   
-  for(var i =0; i < bubbles.length; i++) {
+  for(var i = bubbles.length - 1; i >= 0; i--) {
     bubbles[i].move();
     bubbles[i].display();
+    if (bubbles[i].y > height) {
+      bubbles.splice(i, 1);
+    }
   }
   
   if (bubbles.length > 10000) {
@@ -70,11 +73,12 @@ function keyPressed() {
 function Bubble (x, y, newHue) {
   this.x = x;
   this.y = y;
+  this.r = random(10,20);
   this.chue = newHue;
   
   this.move = function() {
     this.x += random(-0.5, 0.5);
-    this.y += random(-0.5, 0.5);
+    this.y += random(5, 10);
   }
   
   this.display = function() {
@@ -87,6 +91,6 @@ function Bubble (x, y, newHue) {
     
     stroke(10, 10, 10, 10);
     fill(map(this.x, 0, windowWidth, 0, 255), 200, 200, 10);
-    ellipse(this.x, this.y, 24, 24);
+    ellipse(this.x, this.y, this.r, this.r);
   }
 }
