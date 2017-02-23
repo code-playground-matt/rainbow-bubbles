@@ -78,7 +78,7 @@ function Bubble (x, y, newHue) {
   
   this.move = function() {
     this.x += random(-0.5, 0.5);
-    this.y += random(5, 10);
+    this.y += random(2, 5);
   }
   
   this.display = function() {
